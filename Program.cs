@@ -66,7 +66,7 @@ namespace tic_tac_toe
                     currPlayerName = player2;
                 }
                 Console.WriteLine($"It's {currPlayerName}'s turn!");
-                Console.WriteLine("Please Choose a spot");
+                Console.Write("Please Choose a spot ");
                 Turn(board1, board2, board3, currPlayer);
                 
 
@@ -103,37 +103,53 @@ namespace tic_tac_toe
             * This also needs to make sure that that spot is not already taken. 
             */
             string spot = Console.ReadLine();
-            int i = 0;
+            
             bool replaced = false;
+            
             while (replaced == false)
             {
-                Console.WriteLine(i);
-                if (board1[i] == spot)
+                for (int i = 0; i < 3; i++)
                 {
-                    board1[i] = currPlayer;
-                    replaced = true;
-                    return;
+
+                
+                    Console.WriteLine(i);
+                    if (board1[i] == spot)
+                    {
+                        if (board1[i] != "X" || board1[i] != "O")
+                        {
+                            board1[i] = currPlayer;
+                            replaced = true;
+                            return;
+                        }
+                    
+                    }
+                    if (board2[i] == spot)
+                    {
+                        if (board2[i] != "X" || board2[i] != "O")
+                        {
+                            board2[i] = currPlayer;
+                            replaced = true;
+                            return;
+                        }
+                    }
+                    if (board3[i] == spot)
+                    {
+                        if (board3[i] != "X" || board3[i] != "O")
+                        {
+                            board3[i] = currPlayer;
+                            replaced = true;
+                            return;
+                        }
+                    }
                 }
-                if (board2[i] == spot)
-                {
-                    board2[i] = currPlayer;
-                    replaced = true;
-                    return;
-                }
-                if (board3[i] == spot)
-                {
-                    board3[i] = currPlayer;
-                    replaced = true;
-                    return;
-                }
-                if (i == 2)
-                {
-                    Console.WriteLine("The number you chose is not on the board.");
-                    Console.Write("Pick another spot please: ");
-                    i = 0;
-                    Turn(board1, board2, board3, currPlayer);
-                }
-                i ++;
+                
+                
+                Console.WriteLine("The number you chose is not on the board.");
+                Console.Write("Pick another spot please: ");
+                spot = Console.ReadLine();
+                    
+                
+                
             }
             
             
